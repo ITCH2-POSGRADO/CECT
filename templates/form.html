@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Crear {{ order_type }}{% endblock %}
+{% block content %}
+<form method="post">
+    {% if order_type == 'transferencia' %}
+    <div class="mb-3">
+        <label class="form-label">De</label>
+        <input name="from" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Para</label>
+        <input name="to" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Monto</label>
+        <input name="amount" type="number" step="0.01" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea name="description" class="form-control"></textarea>
+    </div>
+    {% elif order_type == 'comprobacion' %}
+    <div class="mb-3">
+        <label class="form-label">Fecha</label>
+        <input name="date" type="date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Importe</label>
+        <input name="amount" type="number" step="0.01" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Proveedor</label>
+        <input name="vendor" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Concepto</label>
+        <textarea name="description" class="form-control"></textarea>
+    </div>
+    {% elif order_type == 'compra' %}
+    <div class="mb-3">
+        <label class="form-label">Proveedor</label>
+        <input name="vendor" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Artículo</label>
+        <input name="item" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cantidad</label>
+        <input name="quantity" type="number" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Precio unitario</label>
+        <input name="price" type="number" step="0.01" class="form-control" required>
+    </div>
+    {% endif %}
+    <button class="btn btn-success" type="submit">Guardar</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

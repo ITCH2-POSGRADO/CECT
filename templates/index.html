@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Listado{% endblock %}
+{% block content %}
+<a class="btn btn-primary mb-2"
+   href="{{ url_for('create', order_type='transferencia') }}">
+    Nueva transferencia
+</a>
+<a class="btn btn-primary mb-2"
+   href="{{ url_for('create', order_type='comprobacion') }}">
+    Nueva comprobación
+</a>
+<a class="btn btn-primary mb-2"
+   href="{{ url_for('create', order_type='compra') }}">
+    Nueva orden de compra
+</a>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.order_type }}</td>
+        <td>
+            <a href="{{ url_for('view', order_id=item.id) }}" class="btn btn-sm btn-secondary">
+                Ver
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
